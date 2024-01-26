@@ -1,4 +1,4 @@
-package com.example.practica02_corrutinas.screens
+package com.example.practica02_corrutinas.viewmodel
 
 
 import androidx.compose.runtime.getValue
@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
-import com.example.practica02_corrutinas.domain.LockUseCase
+import com.example.practica02_corrutinas.model.LockUseCase
 
 /**
  * Esta clase representa un ViewModel para la pantalla principal de la aplicación.

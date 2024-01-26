@@ -1,4 +1,4 @@
-package com.example.practica02_corrutinas.data
+package com.example.practica02_corrutinas.model
 
 /**
  * Esta clase representa una API ficticia que simula una operación de larga duración.

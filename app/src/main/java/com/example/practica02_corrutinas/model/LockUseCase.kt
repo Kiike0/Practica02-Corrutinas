@@ -1,6 +1,4 @@
-package com.example.practica02_corrutinas.domain
-
-import com.example.practica02_corrutinas.data.Api
+package com.example.practica02_corrutinas.model
 
 /**
  * Esta clase representa un caso de uso para la operación de bloqueo.
