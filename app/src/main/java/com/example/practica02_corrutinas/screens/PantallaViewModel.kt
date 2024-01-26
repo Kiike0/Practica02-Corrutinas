@@ -14,20 +14,21 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * Esta clase representa un ViewModel para la pantalla principal de la aplicaciónnnnnnnnnnnnnnnnnnnnnnnnnnn.
+ * Esta clase representa un ViewModel para la pantalla principal de la aplicación.
  *
  */
 class PantallaViewModel : ViewModel() {
 
     var resultState by mutableStateOf("")
     var color by mutableStateOf(Color.Red)
+    var isLoading by mutableStateOf(false)
     private var count by mutableIntStateOf(0)
 
     /**
      * Llama a la API a través del caso de uso que le pasamos en el main y
      * actualiza el resuldato de resultState
      */
-    fun llamarApi() {
+    fun callApi() {
         fetchData()
     }
 
@@ -47,16 +48,28 @@ class PantallaViewModel : ViewModel() {
     /**
      * Función que nos permite crear una corrutina desde un ViewModel
      */
-    fun fetchData() {
-        count = count.plus(1)
-
+    private fun fetchData() {
         viewModelScope.launch {
-            val result = withContext(Dispatchers.IO) {
-                delay(5000)
-                "Respuesta de la API ($count)"
+            try {
+                isLoading = true
+                llamarApi()
+            } catch (e: Exception) {
+                println("Error ${e.message}")
+            } finally {
+                isLoading = false
             }
-            resultState = result
         }
+    }
+    /**
+     * Solo funcionan dentro de una corrutina u otra función suspendida
+     */
+    private suspend fun llamarApi() {
+        val result = withContext(Dispatchers.IO) {
+            count++
+            delay(5000)
+            "Respuesta de la API $count"
+        }
+        resultState = result
     }
 
     /**

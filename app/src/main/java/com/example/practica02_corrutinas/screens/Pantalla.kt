@@ -5,11 +5,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.practica02_corrutinas.screens.PantallaViewModel
 
 /**
  * Función composable que representa la pantalla principal.
@@ -25,18 +25,23 @@ fun PantallaInicio(
         modifier = Modifier.fillMaxSize()
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(
-                onClick = { viewModel.cambiaColor() },
-                colors = ButtonDefaults.buttonColors(containerColor = viewModel.color)
-            ) {
-                Text("Cambiar color")
+            if (!viewModel.isLoading){
+                Button(
+                    onClick = { viewModel.cambiaColor() },
+                    colors = ButtonDefaults.buttonColors(containerColor = viewModel.color)
+                ) {
+                    Text("Cambiar color")
+                }
+
+                Text(viewModel.resultState)
+
+                Button(onClick = { viewModel.callApi() }) {
+                    Text("Llamar API")
+                }
+            } else {
+                CircularProgressIndicator()
             }
 
-            Text(viewModel.resultState)
-
-            Button(onClick = { viewModel.llamarApi() }) {
-                Text("Llamar API")
-            }
         }
     }
 }
