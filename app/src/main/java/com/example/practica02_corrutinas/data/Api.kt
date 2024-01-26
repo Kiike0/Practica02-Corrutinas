@@ -5,7 +5,7 @@ package com.example.practica02_corrutinas.data
  */
 class Api {
 
-    var count = 0
+    private var count = 0
 
     /**
      * Esta función bloquea el hilo actual durante 5 segundos para simular una operación de larga duración,
