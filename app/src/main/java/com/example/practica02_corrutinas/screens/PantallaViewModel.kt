@@ -7,6 +7,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Esta clase representa un ViewModel para la pantalla principal de la aplicaciónnnnnnnnnnnnnnnnnnnnnnnnnnn.
@@ -23,7 +28,7 @@ class PantallaViewModel : ViewModel() {
      * actualiza el resuldato de resultState
      */
     fun llamarApi() {
-        resultState = bloqueoApp()
+        fetchData()
     }
 
     /**
@@ -32,10 +37,26 @@ class PantallaViewModel : ViewModel() {
      *
      * @return una cadena que representa la respuesta de la API.
      */
+    /* No la vamos a utilizar como dice el ejercicio:
     private fun bloqueoApp(): String {
         Thread.sleep(5000)
         count++
         return "Respuesta de la API $count"
+    }
+    */
+    /**
+     * Función que nos permite crear una corrutina desde un ViewModel
+     */
+    fun fetchData() {
+        count = count.plus(1)
+
+        viewModelScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                delay(5000)
+                "Respuesta de la API ($count)"
+            }
+            resultState = result
+        }
     }
 
     /**
