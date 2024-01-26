@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * Esta clase representa un ViewModel para la pantalla principal de la aplicaciónnnnnnnnnnnnnnnnnnnnnnnnnnn.
+ * Esta clase representa un ViewModel para la pantalla principal de la aplicación.
  *
  */
 class PantallaViewModel : ViewModel() {
@@ -53,7 +53,7 @@ class PantallaViewModel : ViewModel() {
         viewModelScope.launch {
             val result = withContext(Dispatchers.IO) {
                 delay(5000)
-                "Respuesta de la API ($count)"
+                "Respuesta de la API $count"
             }
             resultState = result
         }
