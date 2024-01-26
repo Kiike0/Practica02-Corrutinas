@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 
 /**
- * Esta clase representa un ViewModel para la pantalla principal de la aplicaciónnnnnnnnnnn.
+ * Esta clase representa un ViewModel para la pantalla principal de la aplicación.
  *
  */
 class PantallaViewModel : ViewModel() {
